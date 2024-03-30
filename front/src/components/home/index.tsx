@@ -12,7 +12,7 @@ const Home = () => {
     return (
         <SafeAreaView className="flex-1 bg-customGray items-center justify-center">
             <View className="absolute top-20 fon w-full flex items-center justify-center z-10">
-                <Text className="text-white text-4xl font-semibold">Trending movies</Text>
+                <Text className="text-white text-4xl font-semibold">Peliculas en tendencia</Text>
             </View>
             <View className="flex-1 items-center justify-center">
                 <Corousel
