@@ -21,7 +21,7 @@ const Login = () => {
                     errorMessage="Este campo es requerido"
                 />
             </View>
-            <View className="items-center flex-row justify-center" >
+            <View className="items-center flex-row justify-center m-5" >
                 <Button title="Iniciar sesi&oacute;n"
                     buttonStyle={{
                         backgroundColor: 'black',
