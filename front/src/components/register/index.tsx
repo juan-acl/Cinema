@@ -1,26 +1,16 @@
+import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Text, StyleSheet } from "react-native";
 
 const Register = () => {
     return (
-        <SafeAreaView style={styles.container} >
-            <Text style={styles.text} >
-                Register component
-            </Text>
+        <SafeAreaView className="flex-1 justify-center items-center bg-customGray">
+            <View>
+                <Text className="text-white" >
+                    Register component
+                </Text>
+            </View>
         </SafeAreaView>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#272727"
-    },
-    text: {
-        color: "white"
-    }
-})
 
 export default Register;
