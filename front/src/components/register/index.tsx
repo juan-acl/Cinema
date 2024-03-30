@@ -9,7 +9,7 @@ const Register = () => {
                 <View>
                     <View className="items-center justify-center" >
                         <Text className="text-white text-3xl " >
-                            Creemos una cuenta!
+                            !Creemos una cuenta!
                         </Text>
                     </View>
                     <Input
@@ -21,13 +21,11 @@ const Register = () => {
                         placeholder="Apellido"
                         className="border-white w-full text-white"
                         errorMessage="Este campo es requerido"
-
                     />
                     <Input
-                        placeholder="Correo"
+                        placeholder="Correo electrónico"
                         className="border-white w-full text-white"
                         errorMessage="Este campo es requerido"
-
                     />
                     <Input
                         placeholder="Contraseña"
