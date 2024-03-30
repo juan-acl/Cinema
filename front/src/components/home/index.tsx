@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const Home = () => {
     return (
         <SafeAreaView>
-            <Text>Home Screen</Text>
+            <Text>Home components</Text>
         </SafeAreaView>
     )
 }
