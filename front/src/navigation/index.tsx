@@ -9,7 +9,7 @@ const TabNavigation = createBottomTabNavigator();
 
 const Tab_Navigation = () => {
     return (
-        <TabNavigation.Navigator>
+        <TabNavigation.Navigator initialRouteName="Home_Screen" >
             <TabNavigation.Screen
                 name="Login_Screen"
                 component={Login}
@@ -27,7 +27,7 @@ const Tab_Navigation = () => {
                     title: "Inicio",
                     headerShown: false,
                     tabBarStyle: { backgroundColor: "#272727" },
-                    tabBarIcon: () => <Icon name="home" type="font-awesome" color="white" />
+                    tabBarIcon: () => <Icon name="home" type="font-awesome" color="white" />,
                 }}
             />
             <TabNavigation.Screen
