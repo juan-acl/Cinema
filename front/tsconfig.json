@@ -5,7 +5,8 @@
     "strict": false,
     "baseUrl": "./",
     "paths": {
-      "@components/*": ["./src/components/*"]
+      "@components/*": ["./src/components/*"],
+      "@redux/*": ["./src/redux/*"],
     },
     "skipLibCheck": true
   },

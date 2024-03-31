@@ -3,13 +3,22 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Input, Button } from "react-native-elements";
 import axios from "axios";
 import { useEffect } from "react";
+import { connect } from "react-redux";
+import { Log_in } from "@redux/actions/user.action";
 
-const Login = () => {
+interface Props {
+    isLogin: boolean,
+    _login: (email: string, password: string) => void
+
+}
+
+const Login = (props: Props) => {
 
     const login = async () => {
         try {
             const response = await axios.post(process.env.API)
             console.log('Response', response.data)
+            console.log('Validando la conexion con reduc', props)
         } catch (error) {
             console.log('Error in fetching', error)
         }
@@ -66,4 +75,12 @@ const Login = () => {
     )
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+    isLogin: state.user.login
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    _login: (email: string, password: string) => dispatch(Log_in(email, password))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
