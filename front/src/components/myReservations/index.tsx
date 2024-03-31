@@ -3,7 +3,7 @@ import { Text } from "react-native";
 
 const MyReservations = () => {
     return (
-        <SafeAreaView>
+        <SafeAreaView className="bg-customGray flex-1" >
             <Text>My Reservations</Text>
         </SafeAreaView>
     )

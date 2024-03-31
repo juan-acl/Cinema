@@ -1,10 +1,17 @@
 import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const Chair = ({ color_reservation }: { color_reservation: string }) => {
+interface ChairProps {
+    fontSize?: number;
+    color?: string;
+    padding?: number;
+    lineHeight?: number;
+}
+
+const Chair = ({ color_reservation, clase }: { color_reservation: string, clase: ChairProps }) => {
     return (
         <View>
-            <Icon name="chair" style={{ fontSize: 30, color: color_reservation }} />
+            <Icon name="chair" style={{ fontSize: clase.fontSize, color: color_reservation, padding: clase.padding }} />
         </View>
     )
 }
