@@ -4,6 +4,7 @@ const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const userRouter = require("../src/routes/user.router");
 
 const app = express();
 
@@ -11,6 +12,15 @@ app.use(helmet());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/user", userRouter);
+
+app.post("/", async (req, res) => {
+  try {
+    return res.status(200).json({ message: "Welcome to the API" });
+  } catch (error) {
+    console.log("Entry endpoint: ", error);
+  }
+});
 
 app.all("**", (req, res) => {
   try {

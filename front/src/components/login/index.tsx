@@ -1,8 +1,24 @@
 import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Input, Button } from "react-native-elements";
+import axios from "axios";
+import { useEffect } from "react";
 
 const Login = () => {
+
+    const login = async () => {
+        try {
+            const response = await axios.post(process.env.API)
+            console.log('Response', response.data)
+        } catch (error) {
+            console.log('Error in fetching', error)
+        }
+    }
+
+    useEffect(() => {
+        login()
+    }, [])
+
     return (
         <SafeAreaView className="flex-1 justify-center bg-customGray" >
             <View className="items-center" >
