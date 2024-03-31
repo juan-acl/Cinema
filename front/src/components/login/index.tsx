@@ -7,6 +7,7 @@ import { Log_in } from "@redux/actions/user.action";
 import axios from "axios";
 import * as Yup from 'yup';
 import { useFormik } from "formik";
+import { useNavigation } from "@react-navigation/native";
 
 interface Props {
     isLogin: boolean,
@@ -14,6 +15,8 @@ interface Props {
 }
 
 const Login = (props: Props) => {
+
+    const navigation = useNavigation();
 
     const formik = useFormik({
         initialValues: {
@@ -27,8 +30,8 @@ const Login = (props: Props) => {
         onSubmit: async (values) => {
             const { email, password } = values
             let response = await props._login(email, password)
-            console.log('Validando la respuesta', response)
             if (response == 'success') {
+                navigation.navigate('Cinema_Screen' as never)
                 console.log('Login success')
             } else {
                 console.log('Login failed')
@@ -44,23 +47,10 @@ const Login = (props: Props) => {
         formik.setFieldValue('password', email)
     }
 
-    const login = async () => {
-        try {
-            const response = await axios.post(process.env.API)
-            const data_user = response.data.user
-        } catch (error) {
-            console.log('Error in fetching', error)
-        }
-    }
-
-    useEffect(() => {
-        login()
-    }, [])
-
     return (
         <SafeAreaView className="flex-1 justify-center bg-customGray" >
             <View className="items-center" >
-                <Text className="text-white text-3xl" >Iniciar sesi&oacute;n </Text>
+                <Text className="text-white text-3xl mb-10" >Iniciar sesi&oacute;n </Text>
             </View>
             <View>
                 <Input

@@ -9,7 +9,6 @@ export const Log_in = (email: string, password: string) => async (dispatch) => {
     try {
         const response = await axios.post(process.env.API + "user/login", { email, password })
         let message = ""
-        console.log('Response login: ', response.data)
         if (response.data.status === 200) {
             dispatch(UserLogin(response.data.user))
             message = 'success'

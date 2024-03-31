@@ -16,7 +16,7 @@ app.use("/user", userRouter);
 
 app.post("/", async (req, res) => {
   try {
-    return res.status(200).json({ message: "Welcome to the API" });
+    return res.status(200).json({ status: 200, message: "Welcome to the API" });
   } catch (error) {
     console.log("Entry endpoint: ", error);
   }
@@ -24,7 +24,7 @@ app.post("/", async (req, res) => {
 
 app.all("**", (req, res) => {
   try {
-    return res.status(404).json({ code: 404, message: "Not found" });
+    return res.status(404).json({ status: 404, message: "Not found" });
   } catch (error) {
     console.log("Entry endpoint: ", error);
   }
