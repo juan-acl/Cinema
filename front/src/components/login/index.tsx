@@ -1,24 +1,53 @@
+import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
+import { connect } from "react-redux";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Input, Button } from "react-native-elements";
-import axios from "axios";
-import { useEffect } from "react";
-import { connect } from "react-redux";
 import { Log_in } from "@redux/actions/user.action";
+import axios from "axios";
+import * as Yup from 'yup';
+import { useFormik } from "formik";
 
 interface Props {
     isLogin: boolean,
-    _login: (email: string, password: string) => void
-
+    _login: (email: string, password: string) => string
 }
 
 const Login = (props: Props) => {
 
+    const formik = useFormik({
+        initialValues: {
+            email: "",
+            password: ""
+        },
+        validationSchema: Yup.object({
+            email: Yup.string().required('Este campo es requerido').email('El correo electrónico no es válido'),
+            password: Yup.string().required('Este campo es requerido')
+        }),
+        onSubmit: async (values) => {
+            const { email, password } = values
+            let response = await props._login(email, password)
+            console.log('Validando la respuesta', response)
+            if (response == 'success') {
+                console.log('Login success')
+            } else {
+                console.log('Login failed')
+            }
+        }
+    })
+
+    const onChangeEmail = (email: string) => {
+        formik.setFieldValue('email', email)
+    }
+
+    const onChangePassword = (email: string) => {
+        formik.setFieldValue('password', email)
+    }
+
     const login = async () => {
         try {
             const response = await axios.post(process.env.API)
-            console.log('Response', response.data)
-            console.log('Validando la conexion con reduc', props)
+            const data_user = response.data.user
         } catch (error) {
             console.log('Error in fetching', error)
         }
@@ -35,19 +64,25 @@ const Login = (props: Props) => {
             </View>
             <View>
                 <Input
+                    value={formik.values.email}
                     placeholder="Correo electrónico"
                     className="border-white w-full text-white"
-                    errorMessage="Este campo es requerido"
+                    onChangeText={(email) => onChangeEmail(email)}
                 />
+                <Text className="text-red-500" >{formik.errors.email}</Text>
                 <Input
+                    value={formik.values.password}
                     placeholder="Contraseña"
                     secureTextEntry={true}
+                    onChangeText={(password) => onChangePassword(password)}
                     className="border-white w-full text-white"
-                    errorMessage="Este campo es requerido"
                 />
+                <Text className="text-red-500" >{formik.errors.password}</Text>
             </View>
             <View className="items-center flex-row justify-center m-5" >
-                <Button title="Iniciar sesi&oacute;n"
+                <Button
+                    title="Iniciar sesi&oacute;n"
+                    onPress={() => formik.handleSubmit()}
                     buttonStyle={{
                         backgroundColor: 'black',
                         borderColor: 'white',
@@ -58,7 +93,8 @@ const Login = (props: Props) => {
                     }}
                     titleStyle={{ fontWeight: 'bold' }}
                 />
-                <Button title="Cancelar"
+                <Button
+                    title="Cancelar"
                     buttonStyle={{
                         backgroundColor: 'black',
                         borderColor: 'white',

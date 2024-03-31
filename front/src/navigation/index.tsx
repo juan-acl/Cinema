@@ -1,5 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { connect } from "react-redux";
 import Home from "@components/home";
 import Login from "@components/login"
 import Register from "@components/register";
@@ -8,13 +9,17 @@ import Profile from "@components/profile";
 import Cinema from "@components/cinema";
 import MyReservations from "@components/myReservations";
 
+interface Props {
+    isLogin: boolean
+}
+
 const TabNavigation = createBottomTabNavigator();
 
-const Tab_Navigation = () => {
+const Tab_Navigation = (props: Props) => {
     return (
         <TabNavigation.Navigator initialRouteName="Home_Screen" >
             {
-                true ?
+                !props.isLogin ?
                     <>
                         <TabNavigation.Screen
                             name="Login_Screen"
@@ -84,4 +89,8 @@ const Tab_Navigation = () => {
     )
 }
 
-export default Tab_Navigation;
+const mapStateToProps = (state) => ({
+    isLogin: state.user.login
+})
+
+export default connect(mapStateToProps)(Tab_Navigation);
