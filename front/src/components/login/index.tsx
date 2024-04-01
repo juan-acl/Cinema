@@ -9,9 +9,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "@redux/configureStore";
 import { log_in } from "@redux/slices/user.slice";
 import { useFocusEffect } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 const Login = () => {
 
+    const navigation = useNavigation();
     const dispatch: AppDispatch = useDispatch();
     const isLoading = useSelector((state: RootState) => state.pageLoader.loading);
 
@@ -27,7 +29,12 @@ const Login = () => {
         }),
         onSubmit: async (values) => {
             const { email, password } = values
-            await dispatch(log_in({ email, password }))
+            let response = await dispatch(log_in({ email, password }))
+            if (response.payload == 'success') {
+                setTimeout(() => {
+                    navigation.navigate('Cinema_Screen' as never)
+                }, 2000)
+            }
         }
     })
 
