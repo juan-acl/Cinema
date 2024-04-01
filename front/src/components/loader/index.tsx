@@ -1,20 +1,13 @@
-import { connect } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { BarIndicator } from "react-native-indicators"
+import { RootState } from "@redux/configureStore";
 
-interface Props {
-    isLogin: boolean
+const Loader: React.FC = () => {
+    const isLoading = useSelector((state: RootState) => state.pageLoader.loading)
+    return (
+        isLoading && <BarIndicator color="white" size={60} />
+    )
 }
 
-interface State {
-    user: {
-        login: boolean
-    }
-}
-
-const Loader = (props: Props) => props.isLogin && <BarIndicator color="white" size={60} />
-
-const mapStateToProps = (state: State) => ({
-    isLogin: state.user.login
-})
-
-export default connect(mapStateToProps)(Loader);
+export default Loader;

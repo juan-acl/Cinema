@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
-import UserReducer from "@redux/reducers/user.areducer";
+import { userReducer } from "@redux/slices/user.slice";
+import { loaderReducer } from "@redux/slices/loader.slice"
 
 
 const rootReducer = combineReducers({
-    user: UserReducer
+    user: userReducer,
+    pageLoader: loaderReducer
 })
 
 export default rootReducer;
