@@ -33,8 +33,7 @@ const Home = () => {
                     inactiveSlideOpacity={0.2}
                     loop={true}
                     autoplay={true}
-                    autoplayInterval={3000}
-                    layout={'default'}
+                    autoplayInterval={2000}
                     slideStyle={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 />
             </View>

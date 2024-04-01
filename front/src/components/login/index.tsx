@@ -1,3 +1,4 @@
+import { useCallback, useEffect } from "react";
 import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Input, Button } from "react-native-elements";
@@ -7,6 +8,7 @@ import PageLoader from "@components/loader"
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "@redux/configureStore";
 import { log_in } from "@redux/slices/user.slice";
+import { useFocusEffect } from "@react-navigation/native";
 
 const Login = () => {
 
@@ -18,6 +20,7 @@ const Login = () => {
             email: "",
             password: ""
         },
+        validateOnBlur: true,
         validationSchema: Yup.object({
             email: Yup.string().required('Este campo es requerido').email('El correo electrónico no es válido'),
             password: Yup.string().required('Este campo es requerido')
@@ -53,7 +56,7 @@ const Login = () => {
                             className="border-white w-full text-white"
                             onChangeText={(email) => onChangeEmail(email)}
                         />
-                        <Text className="text-red-500" >{formik.errors.email}</Text>
+                        <Text className="text-red-500 ml-3" >{formik.errors.email}</Text>
                         <Input
                             value={formik.values.password}
                             placeholder="Contraseña"
@@ -61,7 +64,7 @@ const Login = () => {
                             onChangeText={(password) => onChangePassword(password)}
                             className="border-white w-full text-white"
                         />
-                        <Text className="text-red-500" >{formik.errors.password}</Text>
+                        <Text className="text-red-500 ml-3" >{formik.errors.password}</Text>
                     </View>
                     <View className="items-center flex-row justify-center m-5" >
                         <Button
