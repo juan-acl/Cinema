@@ -8,6 +8,8 @@ import { setUserLogOut } from "@redux/slices/user.slice";
 import { setShowLoader } from "@redux/slices/loader.slice";
 import { useDispatch } from "react-redux";
 import PageLoader from "@components/loader"
+import { useState } from "react";
+import ModalEdit from "@components/modal";
 
 interface User {
     _id: string,
@@ -19,6 +21,7 @@ interface User {
 }
 
 const Profile = () => {
+    const [showModal, setShowModal] = useState(false);
     const user: User = useSelector((state: RootState) => state.user.profile)
     const isLoading = useSelector((state: RootState) => state.pageLoader.loading)
     const dispatch: AppDispatch = useDispatch();
@@ -95,11 +98,13 @@ const Profile = () => {
                                         marginLeft: 11,
                                     }}
                                     titleStyle={{ fontWeight: 'bold' }}
+                                    onPress={() => setShowModal(true)}
                                 />
                             </View>
                         </View>
                     </>
             }
+            {showModal && <ModalEdit showModal={showModal} setShowModal={setShowModal} />}
         </SafeAreaView>
     )
 }
