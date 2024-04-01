@@ -70,12 +70,14 @@ exports.updateProfile = async (req, res) => {
     }
     let emailExists = await UserModel.findOne({ email });
     if (!emailExists) {
-      await UserModel.findOneAndUpdate(
+      let response = await UserModel.findOneAndUpdate(
         { _id },
         { name, lastname, email, password },
         { new: true }
       );
-      return res.status(200).json({ status: 200, message: "User updated" });
+      return res
+        .status(200)
+        .json({ status: 200, message: "User updated", user: response });
     }
     return res
       .status(200)

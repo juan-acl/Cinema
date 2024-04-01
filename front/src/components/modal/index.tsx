@@ -2,9 +2,11 @@ import React from "react"
 import { Button, Modal, FormControl, Input, NativeBaseProvider } from "native-base";
 import { View, Text } from "react-native";
 import { useSelector } from "react-redux";
-import { RootState } from "@redux/configureStore";
+import { AppDispatch, RootState } from "@redux/configureStore";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import { useDispatch } from "react-redux";
+import { updateUser } from "@redux/slices/user.slice";
 
 interface ModalProps {
     showModal: boolean;
@@ -22,7 +24,7 @@ interface User {
 const ModalEdit = (props: ModalProps) => {
 
     const user: User = useSelector((state: RootState) => state.user.profile)
-
+    const dispatch: AppDispatch = useDispatch();
     const formik = useFormik({
         initialValues: {
             name: user.name,
@@ -38,7 +40,8 @@ const ModalEdit = (props: ModalProps) => {
             password: Yup.string().required('Este campo es requerido')
         }),
         onSubmit: async (values) => {
-            console.log(values)
+            const { name, lastname, email, password } = values
+            await dispatch(updateUser({ name, lastname, email, password, _id: user._id }))
         }
     })
 
@@ -84,9 +87,10 @@ const ModalEdit = (props: ModalProps) => {
                                     Cancel
                                 </Button>
                                 <Button onPress={() => {
+                                    formik.handleSubmit()
                                     props.setShowModal(false);
                                 }}>
-                                    Save
+                                    Confirmar
                                 </Button>
                             </Button.Group>
                         </Modal.Footer>

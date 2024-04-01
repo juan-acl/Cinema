@@ -27,6 +27,13 @@ interface User {
     password: string
     __v: number
 }
+interface UserUpdated {
+    _id: string,
+    name: string,
+    lastname: string
+    email: string
+    password: string
+}
 
 // Estado incial de redux
 const initialState: UserState = {
@@ -74,7 +81,6 @@ export const log_in = createAsyncThunk('user/login', async ({ email, password }:
 export const register = createAsyncThunk('user/register', async ({ name, lastname, email, password }: UserRegister, thunAPI) => {
     try {
         thunAPI.dispatch(setShowLoader(true))
-
         const response = await axios.post(process.env.API + 'user/register', { name, lastname, email, password })
         return response.data.status
     } catch (error) {
@@ -83,6 +89,29 @@ export const register = createAsyncThunk('user/register', async ({ name, lastnam
     } finally {
         setTimeout(() => {
             thunAPI.dispatch(setShowLoader(false))
+        }, 2000)
+    }
+})
+
+export const updateUser = createAsyncThunk('user/update-profile', async ({ _id, name, lastname, email, password }: UserUpdated, thunkAPI) => {
+    try {
+        thunkAPI.dispatch(setShowLoader(true))
+        const response = await axios.post(process.env.API + 'user/update-profile', { name, lastname, email, password, _id })
+        console.log(response.data)
+        if (response.data.status === 200) {
+            setTimeout(() => {
+                thunkAPI.dispatch(userSlice.actions.setProfileUser(response.data.user))
+            }, 2000)
+            return 'success'
+        } else {
+            return 'error'
+        }
+    } catch (error) {
+        console.log('Error update profile: ' + error)
+        return 'error'
+    } finally {
+        setTimeout(() => {
+            thunkAPI.dispatch(setShowLoader(false))
         }, 2000)
     }
 })
