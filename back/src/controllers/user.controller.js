@@ -38,3 +38,26 @@ exports.login = async (req, res) => {
       .json({ status: 500, message: "Internal server error: " + error });
   }
 };
+
+exports.register = async (req, res) => {
+  try {
+    const { name, lastname, email, password } = req.body;
+    if (!name || !lastname || !email || !password) {
+      return res.status(400).json({ status: 400, message: "Missing data" });
+    }
+    let emailExists = await UserModel.findOne({ email });
+    if (!emailExists) {
+      let user = new UserModel({ name, lastname, email, password });
+      await user.save();
+      return res.status(200).json({ status: 200, message: "User created" });
+    }
+    return res
+      .status(400)
+      .json({ status: 400, message: "Email already exists" });
+  } catch (error) {
+    console.log("Error register:" + error);
+    return res
+      .status(500)
+      .json({ status: 500, message: "Internal server error: " + error });
+  }
+};
