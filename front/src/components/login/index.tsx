@@ -89,6 +89,7 @@ const Login = () => {
                                 marginLeft: 11,
                             }}
                             titleStyle={{ fontWeight: 'bold' }}
+                            onPress={() => formik.resetForm()}
                         />
                     </View>
                 </>
