@@ -15,7 +15,7 @@ interface LoginCredentials {
 interface User {
     _id: string,
     name: string,
-    lastaname: string
+    lastname: string
     email: string
     password: string
     __v: number
@@ -35,9 +35,9 @@ const userSlice = createSlice({
             state.profile = action.payload;
             state.login = true;
         },
-        UserLogin: (state, action) => {
+        setUserLogOut: (state, action) => {
             state.profile = action.payload;
-            state.login = true;
+            state.login = false;
         },
     }
 })
@@ -64,7 +64,7 @@ export const log_in = createAsyncThunk('user/login', async ({ email, password }:
     }
 });
 
-export const { setProfileUser } = userSlice.actions;
+export const { setProfileUser, setUserLogOut } = userSlice.actions;
 const userReducer = userSlice.reducer;
 export { userSlice, userReducer }
 

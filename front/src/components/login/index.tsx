@@ -24,7 +24,7 @@ const Login = () => {
         }),
         onSubmit: async (values) => {
             const { email, password } = values
-            dispatch(log_in({ email, password }))
+            await dispatch(log_in({ email, password }))
         }
     })
 
@@ -44,7 +44,7 @@ const Login = () => {
                 :
                 <>
                     <View className="items-center" >
-                        <Text className="text-white text-3xl mb-10" >Iniciar sesi&oacute;n dfs</Text>
+                        <Text className="text-white text-3xl mb-10" >Iniciar sesi&oacute;n</Text>
                     </View>
                     <View>
                         <Input

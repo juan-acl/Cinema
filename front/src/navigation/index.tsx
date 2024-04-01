@@ -7,7 +7,7 @@ import { Icon } from "react-native-elements";
 import Profile from "@components/profile";
 import Cinema from "@components/cinema";
 import MyReservations from "@components/myReservations";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "@redux/configureStore";
 
 const TabNavigation = createBottomTabNavigator();
@@ -16,7 +16,7 @@ const Tab_Navigation: React.FC = () => {
     const isLogin = useSelector((state: RootState) => state.user.login)
 
     return (
-        <TabNavigation.Navigator initialRouteName="Home_Screen" >
+        <TabNavigation.Navigator initialRouteName={!isLogin ? 'Home_Screen' : 'Cinema_Screen'}>
             {
                 !isLogin ?
                     <>
