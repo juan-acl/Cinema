@@ -39,6 +39,12 @@ const Login = () => {
         formik.setFieldValue('password', email)
     }
 
+    useFocusEffect(
+        useCallback(() => {
+            return () => formik.resetForm()
+        }, [])
+    )
+
     return (
         <SafeAreaView className="flex-1 justify-center bg-customGray" >
             {isLoading

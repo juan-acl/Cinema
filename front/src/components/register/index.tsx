@@ -3,6 +3,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Input, Button } from 'react-native-elements';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import { useFocusEffect } from "@react-navigation/native";
+import { useCallback } from "react";
 
 const Register = () => {
 
@@ -24,6 +26,12 @@ const Register = () => {
             console.log(values)
         },
     })
+
+    useFocusEffect(
+        useCallback(() => {
+            return () => formik.resetForm()
+        }, [])
+    )
 
     const onChangeName = (name: string, event: any) => {
         const { text } = event.nativeEvent;
