@@ -34,11 +34,11 @@ const Register = () => {
         <>
             <SafeAreaView className="flex-1 justify-center bg-customGray">
                 <View>
-                    <View className="items-center justify-center" >
+                    <View className="items-center justify-center mb-10 " >
                         <Text className="text-white text-3xl" >
                             !Creemos una cuenta!
                         </Text>
-                    </View>
+                    </View  >
                     <Input
                         value={formik.values.name}
                         onChange={(name) => onChangeName('name', name)}
