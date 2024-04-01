@@ -61,3 +61,29 @@ exports.register = async (req, res) => {
       .json({ status: 500, message: "Internal server error: " + error });
   }
 };
+
+exports.updateProfile = async (req, res) => {
+  try {
+    const { name, lastname, email, password, _id } = req.body;
+    if (!name || !lastname || !email || !password || !_id) {
+      return res.status(200).json({ status: 400, message: "Missing data" });
+    }
+    let emailExists = await UserModel.findOne({ email });
+    if (!emailExists) {
+      await UserModel.findOneAndUpdate(
+        { _id },
+        { name, lastname, email, password },
+        { new: true }
+      );
+      return res.status(200).json({ status: 200, message: "User updated" });
+    }
+    return res
+      .status(200)
+      .json({ status: 400, message: "Email already exists" });
+  } catch (error) {
+    console.log("Error updateProfile: ", error);
+    return res
+      .status(500)
+      .json({ status: 500, message: "Internal server error: " + error });
+  }
+};
