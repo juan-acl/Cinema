@@ -5,9 +5,17 @@ import { useFormik } from "formik";
 import * as Yup from 'yup';
 import { useFocusEffect } from "@react-navigation/native";
 import { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@redux/configureStore";
+import { register } from "@redux/slices/user.slice";
+import PageLoader from "@components/loader"
+import { useNavigation } from "@react-navigation/native";
 
 const Register = () => {
 
+    const navigation = useNavigation();
+    const isLoading = useSelector((state: RootState) => state.pageLoader.loading);
+    const dipatch: AppDispatch = useDispatch();
     const formik = useFormik({
         initialValues: {
             name: "",
@@ -23,7 +31,11 @@ const Register = () => {
             password: Yup.string().required('Este campo es requerido')
         }),
         onSubmit: async (values) => {
-            console.log(values)
+            const { name, lastname, email, password } = values
+            let response = await dipatch(register({ name, lastname, email, password }))
+            if (response.payload === 200) {
+                navigation.navigate('Login' as never)
+            }
         },
     })
 
@@ -41,69 +53,75 @@ const Register = () => {
     return (
         <>
             <SafeAreaView className="flex-1 justify-center bg-customGray">
-                <View>
-                    <View className="items-center justify-center mb-10 " >
-                        <Text className="text-white text-3xl" >
-                            !Creemos una cuenta!
-                        </Text>
-                    </View  >
-                    <Input
-                        value={formik.values.name}
-                        onChange={(name) => onChangeName('name', name)}
-                        placeholder="Nombre"
-                        className="border-white w-full text-white"
-                    />
-                    <Text className="text-red-500 ml-3" >{formik.errors.name}</Text>
-                    <Input
-                        value={formik.values.lastname}
-                        onChange={(name) => onChangeName('lastname', name)}
-                        placeholder="Apellido"
-                        className="border-white w-full text-white"
-                    />
-                    <Text className="text-red-500 ml-3" >{formik.errors.lastname}</Text>
-                    <Input
-                        value={formik.values.email}
-                        onChange={(name) => onChangeName('email', name)}
-                        placeholder="Correo electrónico"
-                        className="border-white w-full text-white"
-                    />
-                    <Text className="text-red-500 ml-3" >{formik.errors.email}</Text>
-                    <Input
-                        value={formik.values.password}
-                        onChange={(name) => onChangeName('password', name)}
-                        placeholder="Contraseña"
-                        secureTextEntry={true}
-                        className="border-white w-full text-white"
-                    />
-                    <Text className="text-red-500 ml-3" >{formik.errors.password}</Text>
-                    <View className="flex-row justify-center m-5">
-                        <Button title="Crear cuenta"
-                            buttonStyle={{
-                                backgroundColor: 'black',
-                                borderColor: 'white',
-                                borderRadius: 30,
-                            }}
-                            containerStyle={{
-                                width: 150,
-                            }}
-                            titleStyle={{ fontWeight: 'bold' }}
-                            onPress={() => formik.handleSubmit()}
+                {isLoading
+                    ?
+                    <PageLoader />
+                    :
+                    <View>
+                        <View className="items-center justify-center mb-10 " >
+                            <Text className="text-white text-3xl" >
+                                !Creemos una cuenta!
+                            </Text>
+                        </View  >
+                        <Input
+                            value={formik.values.name}
+                            onChange={(name) => onChangeName('name', name)}
+                            placeholder="Nombre"
+                            className="border-white w-full text-white"
                         />
-                        <Button title="Cancelar"
-                            buttonStyle={{
-                                backgroundColor: 'black',
-                                borderColor: 'white',
-                                borderRadius: 30,
-                            }}
-                            containerStyle={{
-                                width: 150,
-                                marginLeft: 10,
-                            }}
-                            titleStyle={{ fontWeight: 'bold' }}
-                            onPress={() => formik.resetForm()}
+                        <Text className="text-red-500 ml-3" >{formik.errors.name}</Text>
+                        <Input
+                            value={formik.values.lastname}
+                            onChange={(name) => onChangeName('lastname', name)}
+                            placeholder="Apellido"
+                            className="border-white w-full text-white"
                         />
+                        <Text className="text-red-500 ml-3" >{formik.errors.lastname}</Text>
+                        <Input
+                            value={formik.values.email}
+                            onChange={(name) => onChangeName('email', name)}
+                            placeholder="Correo electrónico"
+                            className="border-white w-full text-white"
+                        />
+                        <Text className="text-red-500 ml-3" >{formik.errors.email}</Text>
+                        <Input
+                            value={formik.values.password}
+                            onChange={(name) => onChangeName('password', name)}
+                            placeholder="Contraseña"
+                            secureTextEntry={true}
+                            className="border-white w-full text-white"
+                        />
+                        <Text className="text-red-500 ml-3" >{formik.errors.password}</Text>
+                        <View className="flex-row justify-center m-5">
+                            <Button title="Crear cuenta"
+                                buttonStyle={{
+                                    backgroundColor: 'black',
+                                    borderColor: 'white',
+                                    borderRadius: 30,
+                                }}
+                                containerStyle={{
+                                    width: 150,
+                                }}
+                                titleStyle={{ fontWeight: 'bold' }}
+                                onPress={() => formik.handleSubmit()}
+                            />
+                            <Button title="Cancelar"
+                                buttonStyle={{
+                                    backgroundColor: 'black',
+                                    borderColor: 'white',
+                                    borderRadius: 30,
+                                }}
+                                containerStyle={{
+                                    width: 150,
+                                    marginLeft: 10,
+                                }}
+                                titleStyle={{ fontWeight: 'bold' }}
+                                onPress={() => formik.resetForm()}
+                            />
+                        </View>
                     </View>
-                </View>
+
+                }
             </SafeAreaView>
         </>
     )

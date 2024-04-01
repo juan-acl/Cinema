@@ -7,6 +7,13 @@ interface UserState {
     login: boolean,
 }
 
+interface UserRegister {
+    name: string
+    lastname: string
+    email: string
+    password: string
+}
+
 interface LoginCredentials {
     email: string;
     password: string;
@@ -63,6 +70,22 @@ export const log_in = createAsyncThunk('user/login', async ({ email, password }:
         }, 2000)
     }
 });
+
+export const register = createAsyncThunk('user/register', async ({ name, lastname, email, password }: UserRegister, thunAPI) => {
+    try {
+        thunAPI.dispatch(setShowLoader(true))
+
+        const response = await axios.post(process.env.API + 'user/register', { name, lastname, email, password })
+        return response.data.status
+    } catch (error) {
+        console.log('Error register: ' + error)
+        return 400
+    } finally {
+        setTimeout(() => {
+            thunAPI.dispatch(setShowLoader(false))
+        }, 2000)
+    }
+})
 
 export const { setProfileUser, setUserLogOut } = userSlice.actions;
 const userReducer = userSlice.reducer;
