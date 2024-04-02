@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Input, Button } from "react-native-elements";
@@ -10,6 +10,7 @@ import { RootState, AppDispatch } from "@redux/configureStore";
 import { log_in } from "@redux/slices/user.slice";
 import { useFocusEffect } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+
 
 const Login = () => {
 
@@ -82,7 +83,9 @@ const Login = () => {
                     <View className="items-center flex-row justify-center m-5" >
                         <Button
                             title="Iniciar sesi&oacute;n"
-                            onPress={() => formik.handleSubmit()}
+                            onPress={() => {
+                                formik.handleSubmit()
+                            }}
                             buttonStyle={{
                                 backgroundColor: 'black',
                                 borderColor: 'white',
@@ -105,7 +108,9 @@ const Login = () => {
                                 marginLeft: 11,
                             }}
                             titleStyle={{ fontWeight: 'bold' }}
-                            onPress={() => formik.resetForm()}
+                            onPress={() => {
+                                formik.resetForm()
+                            }}
                         />
                     </View>
                 </>

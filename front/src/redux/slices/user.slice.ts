@@ -97,7 +97,6 @@ export const updateUser = createAsyncThunk('user/update-profile', async ({ _id, 
     try {
         thunkAPI.dispatch(setShowLoader(true))
         const response = await axios.post(process.env.API + 'user/update-profile', { name, lastname, email, password, _id })
-        console.log(response.data)
         if (response.data.status === 200) {
             setTimeout(() => {
                 thunkAPI.dispatch(userSlice.actions.setProfileUser(response.data.user))
