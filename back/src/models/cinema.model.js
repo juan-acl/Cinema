@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const cinemaSchema = new mongoose.Schema({
   seats: [
     {
-      numero: Number,
+      number: Number,
       hour: String,
       seat: [
         {
