@@ -5,6 +5,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const userRouter = require("../src/routes/user.router");
+const cinemaRouter = require("../src/routes/cinema.router");
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/user", userRouter);
+app.use("/cinema", cinemaRouter);
 
 app.post("/", async (req, res) => {
   try {
