@@ -4,10 +4,6 @@ const CinemaModel = require("../models/cinema.model");
 
 exports.createSeats = async (req, res) => {
   try {
-    let findSeats = await CinemaModel.find();
-    if (findSeats.length > 0) {
-      return res.status(200).json({ message: "Seats already created" });
-    }
     // Generar los asientos de las salas por pelicula
     let seats = [];
     let number = 1;
@@ -24,7 +20,7 @@ exports.createSeats = async (req, res) => {
         seat: seats,
       },
     ];
-    let cinema = await CinemaModel.create(newData);
+    let cinema = await CinemaModel.insertMany(newData);
     res.status(201).json({ message: "Seats created successfully", cinema });
   } catch (error) {
     console.log("Error creating seats: ", error);
