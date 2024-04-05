@@ -29,3 +29,17 @@ exports.createSeats = async (req, res) => {
       .json({ code: 500, message: "Error creating seats: " + error });
   }
 };
+
+exports.GetCinemas = async (req, res) => {
+  try {
+    const response = await CinemaModel.find();
+    return res
+      .status(200)
+      .json({ code: 200, message: "success", cinemas: response });
+  } catch (error) {
+    console.log("Error getting cinbemas: ", error);
+    return res
+      .status(500)
+      .json({ code: 500, message: "Error getCinemas: ", error });
+  }
+};
