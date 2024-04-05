@@ -9,7 +9,7 @@ exports.createSeats = async (req, res) => {
     let number = 1;
     for (let i = 0; i < 5; i++) {
       for (let j = 0; j < 5; j++) {
-        seats.push({ reserve: false, number: number });
+        seats.push({ seat: { status: 0, no_seat: number } });
         number++;
       }
     }
@@ -17,7 +17,7 @@ exports.createSeats = async (req, res) => {
       {
         nameMovie: "The Lord of the Rings",
         image: "https://i.imgur.com/7GQ7v1M.jpg",
-        seat: seats,
+        seats,
       },
     ];
     let cinema = await CinemaModel.insertMany(newData);
