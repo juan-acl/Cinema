@@ -1,8 +1,25 @@
 import { View, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Chair from "@components/chair";
+import { GetCinemas } from "@redux/slices/cinema.slice";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@redux/configureStore";
+
 
 const Cinema = () => {
+
+    const dispatch: AppDispatch = useDispatch();
+
+    useEffect(() => {
+
+    }, [])
+
+    const getCinemas = async () => {
+        const response = await dispatch(GetCinemas());
+
+    }
+
     let array = [
         {
             reserve: [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 5, 6, 5, 4, 23, 2, 3, 2, 32]
