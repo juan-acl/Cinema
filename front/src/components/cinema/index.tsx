@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { View, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Chair from "@components/chair";
@@ -6,18 +7,25 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@redux/configureStore";
 
+interface Seats {
+    seat: Seat[]
+}
+
+interface Seat {
+    status: Number
+    no_seat: Number
+}
 
 const Cinema = () => {
-
+    const [seats, setSeats] = useState<Seats[]>([]);
     const dispatch: AppDispatch = useDispatch();
-
     useEffect(() => {
-
+        getCinemas();
     }, [])
 
     const getCinemas = async () => {
         const response = await dispatch(GetCinemas());
-
+        setSeats(response.payload.cinemas[0].seats);
     }
 
     let array = [
@@ -42,8 +50,8 @@ const Cinema = () => {
                 <View className="bg-white w-5 h-5" />
             </View>
             <View className="flex-1 flex-wrap flex-row m-5 h-auto">
-                {array.map((item, index) => (
-                    item.reserve.map((item, index) => {
+                {seats.map((item, index) => (
+                    item.seat.map((item, index) => {
                         let clase = {
                             fontSize: 30,
                             padding: 15,

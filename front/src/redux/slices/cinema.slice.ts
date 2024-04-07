@@ -22,7 +22,7 @@ const initialState = {
 
 }
 
-export const GetCinemas = createAsyncThunk('cinema/getCinema', async ({ }, thunkAPI) => {
+export const GetCinemas = createAsyncThunk('cinema/getCinemas', async (_, thunkAPI) => {
     try {
         thunkAPI.dispatch(setShowLoader(true))
         const response = await axios.post(process.env.API + 'cinema/getCinemas');
