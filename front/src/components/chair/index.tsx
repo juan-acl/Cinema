@@ -13,7 +13,14 @@ interface Seat {
     no_seat: number;
 }
 
-const Chair = ({ color_reservation, clase, onPress, seat }: { color_reservation: string, clase: ChairProps, onPress: () => void, seat: Seat }) => {
+interface Props {
+    color_reservation: string,
+    clase: ChairProps,
+    onPress: () => void,
+    seat: Seat
+}
+
+const Chair = ({ color_reservation, clase, onPress, seat }: Props) => {
     return (
         <View key={seat.no_seat} >
             <Icon
