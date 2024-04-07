@@ -4,10 +4,12 @@ import Chair from "@components/chair";
 import { GetCinemas } from "@redux/slices/cinema.slice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "@redux/configureStore";
+import { AppDispatch, RootState } from "@redux/configureStore";
 import { Button } from "react-native-elements";
 import { View, Text } from 'react-native';
 import { ALERT_TYPE, Dialog, AlertNotificationRoot } from 'react-native-alert-notification';
+import { useSelector } from "react-redux";
+import PageLoader from '@components/loader'
 
 /**
  * status: 
@@ -30,9 +32,10 @@ const Cinema = () => {
     const [seats, setSeats] = useState<Seats[]>([]);
     const [reservedSeat, setReservedSeat] = useState<Seat[]>([]);
     const [totalPay, setTotalPay] = useState<number>(0);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [statusSend, setStatusSend] = useState<'success' | 'danger'>("success");
+
     const dispatch: AppDispatch = useDispatch();
+    const isLoading = useSelector((state: RootState) => state.pageLoader.loading)
+
     useEffect(() => {
         getCinemas();
     }, [])
@@ -89,92 +92,113 @@ const Cinema = () => {
         setTotalPay(total)
     }, [reservedSeat])
 
-    const saveReservation = () => {
+    const saveReservation = async () => {
         console.log("Validando el push a enviar", JSON.stringify(reservedSeat, null, 2))
         if (reservedSeat.length === 0) {
-            setStatusSend("danger")
             Dialog.show({
                 type: ALERT_TYPE.WARNING,
                 title: 'Sin reservaciones seleccionadas',
                 textBody: 'Por favor selecciona al menos un asiento para poder reservar',
                 button: 'Ok',
             })
+            return
         }
+        await getCinemas()
+        setTimeout(() => {
+
+            Dialog.show({
+                type: ALERT_TYPE.SUCCESS,
+                title: 'Reservacion exitosa',
+                textBody: 'Tu reservacion se ha realizado con exito, por favor espera a que se muestre tu boleto en pantalla',
+                button: 'Ok',
+            })
+        }, 2010)
+
     }
 
-    const cancelReservation = () => {
-
+    const cancelReservation = async () => {
+        setReservedSeat([])
+        setTotalPay(0)
+        await getCinemas()
     }
 
     return (
         <SafeAreaView className="flex-1 bg-customGray">
-            <View className="items-center justify-center" >
-                <Text className="text-white text-3xl mt-5 mb-5" >Elige tus boletos Q75.00 c/u</Text>
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', margin: 10 }}>
-                <Text className="text-white">Tu elección</Text>
-                <View className="bg-green-500 w-5 h-5" />
-                <Text className="text-white">Reservado</Text>
-                <View className="bg-red-600 w-5 h-5" />
-                <Text className="text-white">Sin reservar</Text>
-                <View className="bg-white w-5 h-5" />
-            </View>
-            <View className="flex-1 flex-wrap flex-row m-5 h-auto">
-                {seats.map((itemSeats) => (
-                    itemSeats.seat.map((item) => {
-                        let clase = {
-                            fontSize: 30,
-                            padding: 15,
-                            color: "white",
-                        };
-                        let color_reservationMap = {
-                            0: 'white',
-                            1: 'red',
-                            2: 'green'
-                        }
-                        let color_reservation = color_reservationMap[item.status];
-                        return (
-                            <Chair seat={item} clase={clase} color_reservation={color_reservation} onPress={() => reserveSeat(item)} />
-                        );
-                    }))
-                )}
-            </View>
-            <View className="justify-center flex-row" >
-                <Text className="text-white text-2xl mt-5 mb-5">Total a pagar: </Text>
-                <Text className="text-white text-2xl mt-5 mb-5">Q {totalPay}.00</Text>
-            </View>
-            <View className="justify-center items-center flex-row m-2 p-5 ml-6 ">
-                <Button
-                    title='Cancelar'
-                    buttonStyle={{
-                        backgroundColor: 'black',
-                        borderColor: 'white',
-                        borderRadius: 30,
-                        marginRight: 10
-                    }}
-                    containerStyle={{
-                        width: 150
-                    }}
-                    titleStyle={{ fontWeight: 'bold' }}
-                    onPress={cancelReservation}
-                />
-                <AlertNotificationRoot theme='dark'>
-                    <View className="items-center justify-center" >
-                        <Button
-                            title='Reservar'
-                            onPress={saveReservation}
-                            buttonStyle={{
-                                backgroundColor: 'black',
-                                borderColor: 'white',
-                                borderRadius: 30,
-                            }}
-                            containerStyle={{
-                                width: 150
-                            }}
-                        />
-                    </View>
-                </AlertNotificationRoot>
-            </View>
+            {
+                isLoading
+                    ?
+                    <PageLoader />
+                    :
+                    <>
+                        <View className="items-center justify-center" >
+                            <Text className="text-white text-3xl mt-5 mb-5" >Elige tus boletos Q75.00 c/u</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', margin: 10 }}>
+                            <Text className="text-white">Tu elección</Text>
+                            <View className="bg-green-500 w-5 h-5" />
+                            <Text className="text-white">Reservado</Text>
+                            <View className="bg-red-600 w-5 h-5" />
+                            <Text className="text-white">Sin reservar</Text>
+                            <View className="bg-white w-5 h-5" />
+                        </View>
+                        <View className="flex-1 flex-wrap flex-row m-5 h-auto">
+                            {seats.map((itemSeats) => (
+                                itemSeats.seat.map((item) => {
+                                    let clase = {
+                                        fontSize: 30,
+                                        padding: 15,
+                                        color: "white",
+                                    };
+                                    let color_reservationMap = {
+                                        0: 'white',
+                                        1: 'red',
+                                        2: 'green'
+                                    }
+                                    let color_reservation = color_reservationMap[item.status];
+                                    return (
+                                        <Chair seat={item} clase={clase} color_reservation={color_reservation} onPress={() => reserveSeat(item)} />
+                                    );
+                                }))
+                            )}
+                        </View>
+                        <View className="justify-center flex-row" >
+                            <Text className="text-white text-2xl mt-5 mb-5">Total a pagar: </Text>
+                            <Text className="text-white text-2xl mt-5 mb-5">Q {totalPay}.00</Text>
+                        </View>
+                        <View className="justify-center items-center flex-row m-2 p-5 ml-6 ">
+                            <Button
+                                title='Cancelar'
+                                buttonStyle={{
+                                    backgroundColor: 'black',
+                                    borderColor: 'white',
+                                    borderRadius: 30,
+                                    marginRight: 10
+                                }}
+                                containerStyle={{
+                                    width: 150
+                                }}
+                                titleStyle={{ fontWeight: 'bold' }}
+                                onPress={cancelReservation}
+                            />
+                            <AlertNotificationRoot theme='dark'>
+                                <View className="items-center justify-center" >
+                                    <Button
+                                        title='Reservar'
+                                        onPress={saveReservation}
+                                        buttonStyle={{
+                                            backgroundColor: 'black',
+                                            borderColor: 'white',
+                                            borderRadius: 30,
+                                        }}
+                                        containerStyle={{
+                                            width: 150
+                                        }}
+                                    />
+                                </View>
+                            </AlertNotificationRoot>
+                        </View>
+                    </>
+            }
         </SafeAreaView>
     )
 }
