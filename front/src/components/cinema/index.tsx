@@ -31,6 +31,7 @@ const Cinema = () => {
     const [reservedSeat, setReservedSeat] = useState<Seat[]>([]);
     const [totalPay, setTotalPay] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [statusSend, setStatusSend] = useState<'success' | 'danger'>("success");
     const dispatch: AppDispatch = useDispatch();
     useEffect(() => {
         getCinemas();
@@ -91,7 +92,13 @@ const Cinema = () => {
     const saveReservation = () => {
         console.log("Validando el push a enviar", JSON.stringify(reservedSeat, null, 2))
         if (reservedSeat.length === 0) {
-
+            setStatusSend("danger")
+            Dialog.show({
+                type: ALERT_TYPE.WARNING,
+                title: 'Sin reservaciones seleccionadas',
+                textBody: 'Por favor selecciona al menos un asiento para poder reservar',
+                button: 'Ok',
+            })
         }
     }
 
@@ -136,7 +143,7 @@ const Cinema = () => {
                 <Text className="text-white text-2xl mt-5 mb-5">Total a pagar: </Text>
                 <Text className="text-white text-2xl mt-5 mb-5">Q {totalPay}.00</Text>
             </View>
-            <View className="justify-center flex-row m-2 p-5 ">
+            <View className="justify-center items-center flex-row m-2 p-5 ml-6 ">
                 <Button
                     title='Cancelar'
                     buttonStyle={{
@@ -152,23 +159,18 @@ const Cinema = () => {
                     onPress={cancelReservation}
                 />
                 <AlertNotificationRoot theme='dark'>
-                    <View>
+                    <View className="items-center justify-center" >
                         <Button
-                            style={{
+                            title='Reservar'
+                            onPress={saveReservation}
+                            buttonStyle={{
                                 backgroundColor: 'black',
                                 borderColor: 'white',
                                 borderRadius: 30,
-                                marginRight: 10
                             }}
-                            title='Reservar'
-                            onPress={() =>
-                                Dialog.show({
-                                    type: ALERT_TYPE.SUCCESS,
-                                    title: 'Success',
-                                    textBody: 'Congrats! this is dialog box success',
-                                    button: 'close',
-                                })
-                            }
+                            containerStyle={{
+                                width: 150
+                            }}
                         />
                     </View>
                 </AlertNotificationRoot>
