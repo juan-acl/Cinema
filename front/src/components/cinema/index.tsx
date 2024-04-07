@@ -12,8 +12,8 @@ interface Seats {
 }
 
 interface Seat {
-    status: Number
-    no_seat: Number
+    status: number
+    no_seat: number
 }
 
 const Cinema = () => {
@@ -28,14 +28,10 @@ const Cinema = () => {
         setSeats(response.payload.cinemas[0].seats);
     }
 
-    let array = [
-        {
-            reserve: [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 5, 6, 5, 4, 23, 2, 3, 2, 32]
-        },
-        {
-            reserve: [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 5, 6, 5, 4, 23, 2, 3, 2, 32]
-        },
-    ];
+    const reserveSeat = (seat) => {
+        console.log("Lo que se va a reservar", { seat })
+    }
+
     return (
         <SafeAreaView className="flex-1 bg-customGray">
             <View className="items-center justify-center" >
@@ -50,15 +46,15 @@ const Cinema = () => {
                 <View className="bg-white w-5 h-5" />
             </View>
             <View className="flex-1 flex-wrap flex-row m-5 h-auto">
-                {seats.map((item, index) => (
-                    item.seat.map((item, index) => {
+                {seats.map((itemSeats, index) => (
+                    itemSeats.seat.map((item, index) => {
                         let clase = {
                             fontSize: 30,
                             padding: 15,
                             color: "white",
                         };
                         return (
-                            <Chair clase={clase} color_reservation="red" />
+                            <Chair seat={item} clase={clase} color_reservation="red" onPress={() => reserveSeat(item)} />
                         );
                     }))
                 )}
