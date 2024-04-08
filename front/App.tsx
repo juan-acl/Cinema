@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { NavigationContainer } from "@react-navigation/native";
 import TabNavigation from "./src/navigation"
 import { Provider } from "react-redux";

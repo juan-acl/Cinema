@@ -83,22 +83,23 @@ const Cinema = () => {
             Dialog.show({
                 type: ALERT_TYPE.WARNING,
                 title: 'Sin reservaciones seleccionadas',
-                textBody: 'Por favor selecciona un asiento para poder reservar.',
+                textBody: 'Por favor selecciona un asiento para reservar.',
                 button: 'Ok',
             })
             return
         }
         await getCinemas()
         setTimeout(() => {
-            navigation.navigate('Invoice_Reservation_Screen' as never)
             Dialog.show({
                 type: ALERT_TYPE.SUCCESS,
                 title: 'Reservacion exitosa',
                 textBody: 'Tu reservacion se ha realizado con exito, por favor espera a que se muestre tu boleto en pantalla.',
                 button: 'Ok',
             })
-        }, 2100)
-
+            setReservedSeat([])
+            setTotalPay(0)
+        }, 2010)
+        navigation.navigate('Invoice_Reservation_Screen' as never)
     }
 
     const cancelReservation = async () => {

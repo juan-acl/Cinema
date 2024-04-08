@@ -1,7 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Invoice from "@components/invoice";
-import MyReservations from "@components/myReservations";
 import Cinema from "@components/cinema";
 
 const StackNavigation = createStackNavigator();

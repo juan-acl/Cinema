@@ -33,7 +33,7 @@ const Login = () => {
             let response = await dispatch(log_in({ email, password }))
             if (response.payload == 'success') {
                 setTimeout(() => {
-                    navigation.navigate('Cinema_Screen' as never)
+                    navigation.navigate('Cinema_Navigation' as never)
                 }, 2000)
             }
         }

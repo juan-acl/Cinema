@@ -5,7 +5,6 @@ import Login from "@components/login"
 import Register from "@components/register";
 import { Icon } from "react-native-elements";
 import Profile from "@components/profile";
-import Cinema from "@components/cinema";
 import MyReservations from "@components/myReservations";
 import { useSelector } from "react-redux";
 import { RootState } from "@redux/configureStore";
@@ -102,7 +101,7 @@ const Tab_Navigation: React.FC = () => {
                             }}
                         />
                         <TabNavigation.Screen
-                            name="Cinema_Screen"
+                            name="Cinema_Navigation"
                             component={ReservationsNavigation}
                             options={{
                                 title: "Cine",

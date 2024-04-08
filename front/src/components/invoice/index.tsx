@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 
 const Invoice = () => {
     return (
-        <SafeAreaView className="flex-1 justify-center bg-customGray" >
+        <SafeAreaView className="flex-1 justify-center items-center bg-customGray" >
             <View>
                 <Text>Invoice</Text>
             </View>
