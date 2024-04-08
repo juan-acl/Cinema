@@ -127,7 +127,7 @@ const Cinema = () => {
                             <Text className="text-white">Sin reservar</Text>
                             <View className="bg-white w-5 h-5" />
                         </View>
-                        <View className="flex-1 flex-wrap flex-row m-5 h-auto">
+                        <View className="flex-1 justify-center flex-wrap flex-row items-center h-auto">
                             {seats[0]?.seats.map((itemSeats) => (
                                 itemSeats.seat.map((itemSeat) => {
                                     let clase = {
