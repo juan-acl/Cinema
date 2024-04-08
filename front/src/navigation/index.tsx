@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "@components/home";
 import Login from "@components/login"
@@ -10,13 +10,13 @@ import MyReservations from "@components/myReservations";
 import { useSelector } from "react-redux";
 import { RootState } from "@redux/configureStore";
 import { TouchableOpacity } from "react-native";
+import ReservationsNavigation from "./reservations";
 
 const TabNavigation = createBottomTabNavigator();
 
 const Tab_Navigation: React.FC = () => {
     const isLogin = useSelector((state: RootState) => state.user.login)
     const isLoading = useSelector((state: RootState) => state.pageLoader.loading)
-
 
     return (
         <TabNavigation.Navigator
@@ -25,10 +25,6 @@ const Tab_Navigation: React.FC = () => {
                 tabBarActiveTintColor: "white",
                 tabBarLabelStyle: { fontSize: 11, fontWeight: "normal" },
                 tabBarInactiveTintColor: "gray",
-                tabBarStyle: {
-                    backgroundColor: "#272727"
-
-                }
             }}
         >
             {
@@ -107,7 +103,7 @@ const Tab_Navigation: React.FC = () => {
                         />
                         <TabNavigation.Screen
                             name="Cinema_Screen"
-                            component={Cinema}
+                            component={ReservationsNavigation}
                             options={{
                                 title: "Cine",
                                 headerShown: false,

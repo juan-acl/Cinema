@@ -10,30 +10,33 @@ import { View, Text } from 'react-native';
 import { ALERT_TYPE, Dialog, AlertNotificationRoot } from 'react-native-alert-notification';
 import { useSelector } from "react-redux";
 import PageLoader from '@components/loader'
+import { useNavigation } from "@react-navigation/native";
 
-/**
- * status: 
- * 0: free
- * 1: reserved
- * 2: selected
- */
-
-interface Seats {
-    seat: Seat[]
+interface Seats_ {
+    _id: string,
+    seats: SeatParams[]
+    nameMovie: string
+    image: string
+    __v: number
 }
 
-interface Seat {
+interface Seat__ {
     _id: string,
     status: 0 | 1 | 2,
     no_seat: number
 }
 
+interface SeatParams {
+    seat: Seat__[],
+}
+
 const Cinema = () => {
-    const [seats, setSeats] = useState<Seats[]>([]);
-    const [reservedSeat, setReservedSeat] = useState<Seat[]>([]);
+    const [seats, setSeats] = useState<Seats_[]>([]);
+    const [reservedSeat, setReservedSeat] = useState<Seat__[]>([]);
     const [totalPay, setTotalPay] = useState<number>(0);
 
     const dispatch: AppDispatch = useDispatch();
+    const navigation = useNavigation();
     const isLoading = useSelector((state: RootState) => state.pageLoader.loading)
 
     useEffect(() => {
@@ -42,49 +45,32 @@ const Cinema = () => {
 
     const getCinemas = async () => {
         const response = await dispatch(GetCinemas());
-        setSeats(response.payload.cinemas[0].seats);
+        setSeats(response.payload.cinemas);
     }
 
-    const reserveSeat = (seat: Seat) => {
-        let findSeat = seats.find((item) => item.seat.find((itemSeat) => itemSeat.no_seat === seat.no_seat));
+    const reserveSeat = (seat: Seat__) => {
+        /*
+        * status 0 = libre
+        * status 1 = reservado
+        * status 2 = seleccionado
+        */
+        let findSeat = seats[0].seats.find((item) => item.seat.find((itemSeat) => itemSeat.no_seat === seat.no_seat));
         if (findSeat?.seat[0].status === 1) return
         let containt = reservedSeat.find((item) => item.no_seat === seat.no_seat);
+        let newSeats = [...seats];
         if (containt) {
-            // remove seat
-            setReservedSeat(reservedSeat.filter((item) => item.no_seat !== seat.no_seat))
-            setSeats((prev) => {
-                return prev.map((item) => {
-                    return {
-                        seat: item.seat.map((itemSeat) => {
-                            if (itemSeat.no_seat === seat.no_seat) {
-                                return {
-                                    ...itemSeat,
-                                    status: 0
-                                }
-                            }
-                            return itemSeat;
-                        })
-                    }
-                })
-            })
+            // ? remove seat
+            setReservedSeat(reservedSeat.filter((item) => item._id !== seat._id))
+            let index = seats[0].seats.findIndex((item) => item.seat.find(ele => ele.no_seat === seat.no_seat));
+            newSeats[0].seats[index].seat[0].status = 0;
+            setSeats(newSeats)
             return
         }
+        // ? add seat
         setReservedSeat([...reservedSeat, seat])
-        setSeats((prev) => {
-            return prev.map((item) => {
-                return {
-                    seat: item.seat.map((itemSeat) => {
-                        if (itemSeat.no_seat === seat.no_seat) {
-                            return {
-                                ...itemSeat,
-                                status: itemSeat.status === 0 ? 2 : 0
-                            }
-                        }
-                        return itemSeat;
-                    })
-                }
-            })
-        })
+        let index = seats[0].seats.findIndex((item) => item.seat.find(ele => ele.no_seat === seat.no_seat));
+        newSeats[0].seats[index].seat[0].status = 2;
+        setSeats(newSeats)
     }
 
     useEffect(() => {
@@ -93,26 +79,25 @@ const Cinema = () => {
     }, [reservedSeat])
 
     const saveReservation = async () => {
-        console.log("Validando el push a enviar", JSON.stringify(reservedSeat, null, 2))
         if (reservedSeat.length === 0) {
             Dialog.show({
                 type: ALERT_TYPE.WARNING,
                 title: 'Sin reservaciones seleccionadas',
-                textBody: 'Por favor selecciona al menos un asiento para poder reservar',
+                textBody: 'Por favor selecciona un asiento para poder reservar.',
                 button: 'Ok',
             })
             return
         }
         await getCinemas()
         setTimeout(() => {
-
+            navigation.navigate('Invoice_Reservation_Screen' as never)
             Dialog.show({
                 type: ALERT_TYPE.SUCCESS,
                 title: 'Reservacion exitosa',
-                textBody: 'Tu reservacion se ha realizado con exito, por favor espera a que se muestre tu boleto en pantalla',
+                textBody: 'Tu reservacion se ha realizado con exito, por favor espera a que se muestre tu boleto en pantalla.',
                 button: 'Ok',
             })
-        }, 2010)
+        }, 2100)
 
     }
 
@@ -142,8 +127,8 @@ const Cinema = () => {
                             <View className="bg-white w-5 h-5" />
                         </View>
                         <View className="flex-1 flex-wrap flex-row m-5 h-auto">
-                            {seats.map((itemSeats) => (
-                                itemSeats.seat.map((item) => {
+                            {seats[0]?.seats.map((itemSeats) => (
+                                itemSeats.seat.map((itemSeat) => {
                                     let clase = {
                                         fontSize: 30,
                                         padding: 15,
@@ -154,12 +139,14 @@ const Cinema = () => {
                                         1: 'red',
                                         2: 'green'
                                     }
-                                    let color_reservation = color_reservationMap[item.status];
+                                    let color_reservation = color_reservationMap[itemSeat.status];
                                     return (
-                                        <Chair seat={item} clase={clase} color_reservation={color_reservation} onPress={() => reserveSeat(item)} />
+                                        <Chair key={itemSeat._id} seat={itemSeat} clase={clase} color_reservation={color_reservation}
+                                            onPress={() => reserveSeat(itemSeat)}
+                                        />
                                     );
-                                }))
-                            )}
+                                })
+                            ))}
                         </View>
                         <View className="justify-center flex-row" >
                             <Text className="text-white text-2xl mt-5 mb-5">Total a pagar: </Text>
