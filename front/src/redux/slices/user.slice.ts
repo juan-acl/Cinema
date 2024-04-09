@@ -117,5 +117,5 @@ export const updateUser = createAsyncThunk('user/update-profile', async ({ _id, 
 
 export const { setProfileUser, setUserLogOut } = userSlice.actions;
 const userReducer = userSlice.reducer;
-export { userSlice, userReducer }
+export { userReducer }
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Chair from "@components/chair";
-import { GetCinemas } from "@redux/slices/cinema.slice";
+import { GetCinemas, ReservationSeats } from "@redux/slices/cinema.slice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "@redux/configureStore";
@@ -11,6 +11,7 @@ import { ALERT_TYPE, Dialog, AlertNotificationRoot } from 'react-native-alert-no
 import { useSelector } from "react-redux";
 import PageLoader from '@components/loader'
 import { useNavigation } from "@react-navigation/native";
+import Logger from "../../utils/logger";
 
 interface Seats_ {
     _id: string,
@@ -33,15 +34,28 @@ interface SeatParams {
 const Cinema = () => {
     const [seats, setSeats] = useState<Seats_[]>([]);
     const [reservedSeat, setReservedSeat] = useState<Seat__[]>([]);
-    const [totalPay, setTotalPay] = useState<number>(0);
+    let totalPay = reservedSeat.length * 75;
 
     const dispatch: AppDispatch = useDispatch();
     const navigation = useNavigation();
     const isLoading = useSelector((state: RootState) => state.pageLoader.loading)
+    const profile = useSelector((state: RootState) => state.user.profile)
 
     useEffect(() => {
         getCinemas();
     }, [])
+
+    const reservacion = async () => {
+        const response = await dispatch(ReservationSeats(
+            {
+                idCinema: seats[0]._id,
+                idUser: profile._id,
+                no_seats: reservedSeat.map((item) => item.no_seat),
+                image: seats[0].image,
+                nameMovie: seats[0].nameMovie
+            }))
+        setSeats([response.payload])
+    }
 
     const getCinemas = async () => {
         const response = await dispatch(GetCinemas());
@@ -73,11 +87,6 @@ const Cinema = () => {
         setSeats(newSeats)
     }
 
-    useEffect(() => {
-        const total = reservedSeat.length * 75.00
-        setTotalPay(total)
-    }, [reservedSeat])
-
     const saveReservation = async () => {
         if (reservedSeat.length === 0) {
             Dialog.show({
@@ -88,7 +97,13 @@ const Cinema = () => {
             })
             return
         }
-        await getCinemas()
+        await reservacion();
+        await new Promise(resolve => {
+            navigation.navigate('Invoice_Reservation_Screen' as never)
+            setReservedSeat([])
+            totalPay = 0
+            resolve(true)
+        })
         setTimeout(() => {
             Dialog.show({
                 type: ALERT_TYPE.SUCCESS,
@@ -96,15 +111,12 @@ const Cinema = () => {
                 textBody: 'Tu reservacion se ha realizado con exito, por favor espera a que se muestre tu boleto en pantalla.',
                 button: 'Ok',
             })
-            setReservedSeat([])
-            setTotalPay(0)
-        }, 2010)
-        navigation.navigate('Invoice_Reservation_Screen' as never)
+        }, 1000)
     }
 
     const cancelReservation = async () => {
         setReservedSeat([])
-        setTotalPay(0)
+        totalPay = 0
         await getCinemas()
     }
 

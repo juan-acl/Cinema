@@ -1,8 +1,11 @@
 import React from 'react';
 import { Box, VStack, Heading, Divider, Text, NativeBaseProvider } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSelector } from 'react-redux';
+import { RootState } from '@redux/configureStore';
 
 const Invoice = () => {
+    const invoice = useSelector((state: RootState) => state.cinema.invoice)
     const invoiceItems = [
         { title: 'Factura de asientos', quantity: 2, price: '$20', seats: [1, 2], priceUnique: 75.00 },
     ];

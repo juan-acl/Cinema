@@ -22,4 +22,4 @@ const loaderSlice = createSlice({
 
 export const { setShowLoader } = loaderSlice.actions;
 const loaderReducer = loaderSlice.reducer;
-export { loaderSlice, loaderReducer }
+export { loaderReducer }
