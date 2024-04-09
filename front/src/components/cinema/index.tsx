@@ -11,7 +11,6 @@ import { ALERT_TYPE, Dialog, AlertNotificationRoot } from 'react-native-alert-no
 import { useSelector } from "react-redux";
 import PageLoader from '@components/loader'
 import { useNavigation } from "@react-navigation/native";
-import Logger from "../../utils/logger";
 
 interface Seats_ {
     _id: string,

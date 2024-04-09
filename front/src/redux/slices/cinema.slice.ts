@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { setShowLoader } from "./loader.slice";
 import axios from "axios";
-import Logger from "../../utils/logger"
 
 interface CinemaState {
     _id: String
@@ -63,7 +62,7 @@ export const ReservationSeats = createAsyncThunk('cinema/create-reservation', as
         thunkAPI.dispatch(cinameSlice.actions.setReservationSeat({ invoice: { idCinema, idUser, no_seats, image, nameMovie } }))
         return response.data.cinema
     } catch (error) {
-        Logger.error('Error ReservationSeats', { error })
+        console.log('Error ReservationSeats', { error })
         return []
     } finally {
         setTimeout(() => {
@@ -78,7 +77,7 @@ export const GetCinemas = createAsyncThunk('cinema/getCinemas', async (_, thunkA
         const response = await axios.post(process.env.API + 'cinema/getCinemas');
         return response.data
     } catch (error) {
-        console.log('Error getCinemas', error)
+        console.log('Error getCinemas', { error })
         return []
     } finally {
         setTimeout(() => {

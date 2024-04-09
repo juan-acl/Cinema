@@ -34,7 +34,7 @@ const Login = () => {
             if (response.payload == 'success') {
                 setTimeout(() => {
                     navigation.navigate('Cinema_Navigation' as never)
-                }, 2000)
+                }, 1000)
             }
         }
     })

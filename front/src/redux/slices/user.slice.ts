@@ -63,7 +63,7 @@ export const log_in = createAsyncThunk('user/login', async ({ email, password }:
         if (response.data.status === 200) {
             setTimeout(() => {
                 thunkAPI.dispatch(userSlice.actions.setProfileUser(response.data.user));
-            }, 2000)
+            }, 1000)
             return 'success';
         } else {
             return 'error';
@@ -74,7 +74,7 @@ export const log_in = createAsyncThunk('user/login', async ({ email, password }:
     } finally {
         setTimeout(() => {
             thunkAPI.dispatch(setShowLoader(false));
-        }, 2000)
+        }, 1000)
     }
 });
 
@@ -89,7 +89,7 @@ export const register = createAsyncThunk('user/register', async ({ name, lastnam
     } finally {
         setTimeout(() => {
             thunAPI.dispatch(setShowLoader(false))
-        }, 2000)
+        }, 1300)
     }
 })
 
@@ -111,7 +111,7 @@ export const updateUser = createAsyncThunk('user/update-profile', async ({ _id, 
     } finally {
         setTimeout(() => {
             thunkAPI.dispatch(setShowLoader(false))
-        }, 2000)
+        }, 1300)
     }
 })
 
