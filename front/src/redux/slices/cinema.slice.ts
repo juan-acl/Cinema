@@ -37,7 +37,6 @@ const initialState: Cinema = {
         nameMovie: '',
         image: '',
         idUser: ''
-
     }
 }
 
