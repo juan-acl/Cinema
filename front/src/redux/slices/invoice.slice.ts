@@ -14,7 +14,7 @@ interface Params {
     idUser: String
 }
 
-export const getInvoicesById = createAsyncThunk('invoice/invoices-by-user', async ({ idUser }: Params, thunkAPI) => {
+export const GetInvoicesById = createAsyncThunk('invoice/invoices-by-user', async ({ idUser }: Params, thunkAPI) => {
     try {
         thunkAPI.dispatch(setShowLoader(true));
         const response = await axios.post(process.env.API + 'invoice/invoices-by-user', { idUser })

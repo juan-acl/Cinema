@@ -9,7 +9,7 @@ exports.GetInvoicesByUser = async (req, res) => {
       return res
         .status(400)
         .json({ status: "failed", message: "All fields are required!" });
-    const invoices = await InvoiceModel.findOne({ user: idUser });
+    const invoices = await InvoiceModel.find({ user: idUser });
     if (!invoices)
       return res
         .status(404)
