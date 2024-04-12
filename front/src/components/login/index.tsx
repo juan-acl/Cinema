@@ -11,7 +11,6 @@ import { log_in } from "@redux/slices/user.slice";
 import { useFocusEffect } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 
-
 const Login = () => {
 
     const navigation = useNavigation();

@@ -31,13 +31,13 @@ const Profile = () => {
             dispatch(setShowLoader(true))
             setTimeout(() => {
                 dispatch(setUserLogOut(null))
-            }, 2000)
+            }, 700)
         } catch (error) {
             console.log('Error logout: ' + error)
         } finally {
             setTimeout(() => {
                 dispatch(setShowLoader(false))
-            }, 2000)
+            }, 700)
         }
     }
 
