@@ -23,6 +23,8 @@ export const GetInvoicesById = createAsyncThunk('invoice/invoices-by-user', asyn
         console.log('Error getInvoicesById', { error })
         return []
     } finally {
-        thunkAPI.dispatch(setShowLoader(false))
+        setTimeout(() => {
+            thunkAPI.dispatch(setShowLoader(false))
+        }, 2000)
     }
 })

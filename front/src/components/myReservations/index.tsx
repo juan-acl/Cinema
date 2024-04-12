@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { Text, View, StyleSheet, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GetInvoicesById } from "@redux/slices/invoice.slice";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@redux/configureStore";
 import { useDispatch } from "react-redux";
+import PageLoader from '@components/login'
+import { useFocusEffect } from "@react-navigation/native";
 
 interface Invoice {
     _id: String
@@ -15,6 +17,7 @@ interface Invoice {
 
 const MyReservations = () => {
     const profile = useSelector((state: RootState) => state.user.profile);
+    const isLoading = useSelector((state: RootState) => state.pageLoader.loading)
     const dispatch: AppDispatch = useDispatch()
     const [invoices, setInvoices] = useState<Invoice[]>([]);
 
@@ -32,12 +35,14 @@ const MyReservations = () => {
         }
     }
 
+    if (isLoading) return (<PageLoader />)
     return (
         <SafeAreaView className="flex-1 bg-customGray">
-            <Text className="text-white text-3xl m-5 ml-5" >Facturas</Text>
+            <Text className="text-white text-4xl m-5 ml-5" >Facturas</Text>
             <FlatList
                 data={invoices}
                 numColumns={2}
+                ListEmptyComponent={<Text className="text-white text-3xl justify-center items-center" >No hay facturas</Text>}
                 contentContainerStyle={styles.invoicesContainer}
                 renderItem={({ item }) => (
                     <View style={styles.invoiceItem}>
@@ -70,4 +75,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default MyReservations
+export default MyReservations;
