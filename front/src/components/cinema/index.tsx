@@ -131,11 +131,11 @@ const Cinema = () => {
                             <Text className="text-white text-3xl mt-5 mb-5" >Elige tus boletos Q75.00 c/u</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', margin: 10 }}>
-                            <Text className="text-white">Tu elección</Text>
+                            <Text className="text-white">Seleccionado</Text>
                             <View className="bg-green-500 w-5 h-5" />
                             <Text className="text-white">Reservado</Text>
                             <View className="bg-red-600 w-5 h-5" />
-                            <Text className="text-white">Sin reservar</Text>
+                            <Text className="text-white">Disponible</Text>
                             <View className="bg-white w-5 h-5" />
                         </View>
                         <View className="flex-1 justify-center flex-wrap flex-row items-center h-auto">
