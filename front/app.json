@@ -19,10 +19,16 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png"
-      }
+      },
+      "package": "com.jchuc.Cinema"
     },
     "web": {
       "favicon": "./assets/icon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5274747e-774b-488b-851b-f139dd04e187"
+      }
     }
   }
 }
