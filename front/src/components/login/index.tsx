@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Input, Button } from "react-native-elements";
@@ -11,7 +11,7 @@ import { log_in } from "@redux/slices/user.slice";
 import { useFocusEffect } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 
-const Login = () => {
+const Login: React.FC = () => {
 
     const navigation = useNavigation();
     const dispatch: AppDispatch = useDispatch();

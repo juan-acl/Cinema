@@ -1,0 +1,1323 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home screen Home 1`] = `
+<RNCSafeAreaView
+  edges={
+    {
+      "bottom": "additive",
+      "left": "additive",
+      "right": "additive",
+      "top": "additive",
+    }
+  }
+  style={
+    [
+      {
+        "flexBasis": "0%",
+        "flexGrow": 1,
+        "flexShrink": 1,
+      },
+      {
+        "backgroundColor": "#272727",
+      },
+      {
+        "alignItems": "center",
+      },
+      {
+        "justifyContent": "center",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      [
+        {
+          "position": "absolute",
+        },
+        {
+          "top": 80,
+        },
+        {
+          "width": "100%",
+        },
+        {
+          "display": "flex",
+        },
+        {
+          "alignItems": "center",
+        },
+        {
+          "justifyContent": "center",
+        },
+        {
+          "zIndex": 10,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#fff",
+          },
+          {
+            "fontSize": 36,
+            "lineHeight": 40,
+          },
+          {
+            "fontWeight": "600",
+          },
+        ]
+      }
+    >
+      Peliculas en tendencia
+    </Text>
+  </View>
+  <View
+    style={
+      [
+        {
+          "flexBasis": "0%",
+          "flexGrow": 1,
+          "flexShrink": 1,
+        },
+        {
+          "alignItems": "center",
+        },
+        {
+          "justifyContent": "center",
+        },
+      ]
+    }
+  >
+    <RCTScrollView
+      activeAnimationOptions={null}
+      activeAnimationType="timing"
+      activeSlideAlignment="center"
+      activeSlideOffset={20}
+      apparitionDelay={0}
+      automaticallyAdjustContentInsets={false}
+      autoplay={true}
+      autoplayDelay={1000}
+      autoplayInterval={2000}
+      callbackOffsetMargin={5}
+      collapsable={false}
+      containerCustomStyle={{}}
+      contentContainerCustomStyle={{}}
+      contentContainerStyle={
+        [
+          {
+            "paddingLeft": 105,
+            "paddingRight": 105,
+          },
+          {},
+        ]
+      }
+      data={
+        [
+          "movie1",
+          "movie2",
+          "movie3",
+          "movie1",
+          "movie2",
+          "movie3",
+          "movie1",
+          "movie2",
+          "movie3",
+        ]
+      }
+      decelerationRate="fast"
+      directionalLockEnabled={true}
+      enableMomentum={false}
+      enableSnap={true}
+      firstItem={1}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      hasParallaxImages={false}
+      horizontal={true}
+      inactiveSlideOpacity={0.2}
+      inactiveSlideScale={0.9}
+      inactiveSlideShift={0}
+      initialNumToRender={9}
+      invertStickyHeaders={false}
+      inverted={false}
+      isInvertedVirtualizedList={false}
+      itemWidth={465}
+      keyExtractor={[Function]}
+      layout="default"
+      lockScrollTimeoutDuration={1000}
+      lockScrollWhileSnapping={false}
+      loop={true}
+      loopClonesPerSide={3}
+      maxToRenderPerBatch={19}
+      onContentSizeChange={[Function]}
+      onLayout={[Function]}
+      onMomentumScrollBegin={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onResponderRelease={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      onStartShouldSetResponderCapture={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      overScrollMode="never"
+      pinchGestureEnabled={false}
+      removeClippedSubviews={true}
+      renderItem={[Function]}
+      scrollEnabled={true}
+      scrollEventThrottle={1}
+      scrollsToTop={false}
+      shouldOptimizeUpdates={true}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      slideStyle={
+        {
+          "alignItems": "center",
+          "display": "flex",
+          "justifyContent": "center",
+        }
+      }
+      sliderWidth={675}
+      stickyHeaderIndices={[]}
+      style={
+        {
+          "flexDirection": "row",
+          "opacity": 0,
+          "width": 675,
+        }
+      }
+      swipeThreshold={20}
+      useScrollView={false}
+      vertical={false}
+      viewabilityConfigCallbackPairs={[]}
+      windowSize={19}
+    >
+      <View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 1,
+                "transform": [
+                  {
+                    "scale": 1,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 0.2,
+                "transform": [
+                  {
+                    "scale": 0.9,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 0.2,
+                "transform": [
+                  {
+                    "scale": 0.9,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 0.2,
+                "transform": [
+                  {
+                    "scale": 0.9,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 0.2,
+                "transform": [
+                  {
+                    "scale": 0.9,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 0.2,
+                "transform": [
+                  {
+                    "scale": 0.9,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 0.2,
+                "transform": [
+                  {
+                    "scale": 0.9,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 0.2,
+                "transform": [
+                  {
+                    "scale": 0.9,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 0.2,
+                "transform": [
+                  {
+                    "scale": 0.9,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</RNCSafeAreaView>
+`;
+
+exports[`renders correctly 1`] = `
+<RNCSafeAreaView
+  edges={
+    {
+      "bottom": "additive",
+      "left": "additive",
+      "right": "additive",
+      "top": "additive",
+    }
+  }
+  style={
+    [
+      {
+        "flexBasis": "0%",
+        "flexGrow": 1,
+        "flexShrink": 1,
+      },
+      {
+        "backgroundColor": "#272727",
+      },
+      {
+        "alignItems": "center",
+      },
+      {
+        "justifyContent": "center",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      [
+        {
+          "position": "absolute",
+        },
+        {
+          "top": 80,
+        },
+        {
+          "width": "100%",
+        },
+        {
+          "display": "flex",
+        },
+        {
+          "alignItems": "center",
+        },
+        {
+          "justifyContent": "center",
+        },
+        {
+          "zIndex": 10,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#fff",
+          },
+          {
+            "fontSize": 36,
+            "lineHeight": 40,
+          },
+          {
+            "fontWeight": "600",
+          },
+        ]
+      }
+    >
+      Peliculas en tendencia
+    </Text>
+  </View>
+  <View
+    style={
+      [
+        {
+          "flexBasis": "0%",
+          "flexGrow": 1,
+          "flexShrink": 1,
+        },
+        {
+          "alignItems": "center",
+        },
+        {
+          "justifyContent": "center",
+        },
+      ]
+    }
+  >
+    <RCTScrollView
+      activeAnimationOptions={null}
+      activeAnimationType="timing"
+      activeSlideAlignment="center"
+      activeSlideOffset={20}
+      apparitionDelay={0}
+      automaticallyAdjustContentInsets={false}
+      autoplay={true}
+      autoplayDelay={1000}
+      autoplayInterval={2000}
+      callbackOffsetMargin={5}
+      collapsable={false}
+      containerCustomStyle={{}}
+      contentContainerCustomStyle={{}}
+      contentContainerStyle={
+        [
+          {
+            "paddingLeft": 105,
+            "paddingRight": 105,
+          },
+          {},
+        ]
+      }
+      data={
+        [
+          "movie1",
+          "movie2",
+          "movie3",
+          "movie1",
+          "movie2",
+          "movie3",
+          "movie1",
+          "movie2",
+          "movie3",
+        ]
+      }
+      decelerationRate="fast"
+      directionalLockEnabled={true}
+      enableMomentum={false}
+      enableSnap={true}
+      firstItem={1}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      hasParallaxImages={false}
+      horizontal={true}
+      inactiveSlideOpacity={0.2}
+      inactiveSlideScale={0.9}
+      inactiveSlideShift={0}
+      initialNumToRender={9}
+      invertStickyHeaders={false}
+      inverted={false}
+      isInvertedVirtualizedList={false}
+      itemWidth={465}
+      keyExtractor={[Function]}
+      layout="default"
+      lockScrollTimeoutDuration={1000}
+      lockScrollWhileSnapping={false}
+      loop={true}
+      loopClonesPerSide={3}
+      maxToRenderPerBatch={19}
+      onContentSizeChange={[Function]}
+      onLayout={[Function]}
+      onMomentumScrollBegin={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onResponderRelease={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      onStartShouldSetResponderCapture={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      overScrollMode="never"
+      pinchGestureEnabled={false}
+      removeClippedSubviews={true}
+      renderItem={[Function]}
+      scrollEnabled={true}
+      scrollEventThrottle={1}
+      scrollsToTop={false}
+      shouldOptimizeUpdates={true}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      slideStyle={
+        {
+          "alignItems": "center",
+          "display": "flex",
+          "justifyContent": "center",
+        }
+      }
+      sliderWidth={675}
+      stickyHeaderIndices={[]}
+      style={
+        {
+          "flexDirection": "row",
+          "opacity": 0,
+          "width": 675,
+        }
+      }
+      swipeThreshold={20}
+      useScrollView={false}
+      vertical={false}
+      viewabilityConfigCallbackPairs={[]}
+      windowSize={19}
+    >
+      <View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 1,
+                "transform": [
+                  {
+                    "scale": 1,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 0.2,
+                "transform": [
+                  {
+                    "scale": 0.9,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 0.2,
+                "transform": [
+                  {
+                    "scale": 0.9,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 0.2,
+                "transform": [
+                  {
+                    "scale": 0.9,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 0.2,
+                "transform": [
+                  {
+                    "scale": 0.9,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 0.2,
+                "transform": [
+                  {
+                    "scale": 0.9,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 0.2,
+                "transform": [
+                  {
+                    "scale": 0.9,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 0.2,
+                "transform": [
+                  {
+                    "scale": 0.9,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          onFocusCapture={[Function]}
+          onLayout={[Function]}
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            pointerEvents="box-none"
+            style={
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "justifyContent": "center",
+                "opacity": 0.2,
+                "transform": [
+                  {
+                    "scale": 0.9,
+                  },
+                ],
+                "width": 465,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={1}
+                style={
+                  [
+                    {
+                      "borderBottomLeftRadius": 24,
+                      "borderBottomRightRadius": 24,
+                      "borderTopLeftRadius": 24,
+                      "borderTopRightRadius": 24,
+                    },
+                    {
+                      "height": 533.6,
+                      "width": 450,
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</RNCSafeAreaView>
+`;

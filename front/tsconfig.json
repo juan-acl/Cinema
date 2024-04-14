@@ -7,7 +7,7 @@
     "paths": {
       "@components/*": ["./src/components/*"],
       "@redux/*": ["./src/redux/*"],
-      "@log/*": ["./src/utils/*"],
+      "@log/*": ["./src/utils/*"]
     },
     "skipLibCheck": true
   },
