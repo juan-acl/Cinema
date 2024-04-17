@@ -1,3 +1,4 @@
+import React from "react";
 import { AppDispatch, RootState } from "@redux/configureStore";
 import { Avatar, NativeBaseProvider } from "native-base";
 import { Text, View } from "react-native";
@@ -20,7 +21,7 @@ interface User {
     __v: number
 }
 
-const Profile = () => {
+const Profile: React.FC = () => {
     const [showModal, setShowModal] = useState(false);
     const user: User = useSelector((state: RootState) => state.user.profile)
     const isLoading = useSelector((state: RootState) => state.pageLoader.loading)
