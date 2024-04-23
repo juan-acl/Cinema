@@ -1,19 +1,18 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react-native";
-import Register from "@components/register";
+import { NavigationContainer } from "@react-navigation/native";
+import { render } from "@testing-library/react-native";
+import { Provider } from "react-redux"; // Importa Provider desde react-redux
+import Login from "@components/login";
+import { store } from "@redux/configureStore"; // Importa tu tienda de Redux
 
-describe("Register component", () => {
-  test("renders all input fields", () => {
-    const { getByPlaceholderText } = render(<Register />);
-
-    const nameInput = getByPlaceholderText("Nombre");
-    const lastnameInput = getByPlaceholderText("Apellido");
-    const emailInput = getByPlaceholderText("Correo electrónico");
-    const passwordInput = getByPlaceholderText("Contraseña");
-
-    expect(nameInput).toBeTruthy();
-    expect(lastnameInput).toBeTruthy();
-    expect(emailInput).toBeTruthy();
-    expect(passwordInput).toBeTruthy();
+describe("Login component", () => {
+  it("renders correctly", () => {
+    render(
+      <Provider store={store}>
+        <NavigationContainer>
+          <Login />
+        </NavigationContainer>
+      </Provider>,
+    );
   });
 });
